@@ -1,0 +1,47 @@
+
+/*
+ * 全局字体粗细设置
+ * ========================================================================== */
+$last-small-font-size:9px;
+$super-small-font-size: 10px;
+$small-font-size: 11px;
+$font-size: 12px;
+$more-middle-size: 13px;
+$middle-font-size: 14px;
+$bigger-font-size: 15px;
+$more-bigger-size: 16px;
+$more-bigest-size: 18px;
+$middle-bigger-size: 20px;
+$middle-bigest-size: 25px;
+$thirty-bigest-size: 30px;
+$last-bigest-size: 35px;
+$special-bigest-size: 40px;
+$font-weight: 500;
+$font-weight-light: 400;
+$line-height: 1.5;
+
+
+/*
+ * function
+ * ======================================================================== */
+@function px2em($px, $base-font-size: 75px) {
+    @if (unitless($px)) {
+        @warn "Assuming #{$px} to be in pixels, attempting to convert it into pixels for you";
+        @return px2em($px + 0px); // That may fail.
+    } @else if (unit($px) == rem) {
+        @return $px;
+    }
+    @return ($px / $base-font-size) * 1rem;
+}
+
+@mixin font-dpr($font-size){
+    font-size: $font-size;
+
+    [data-dpr="2"] & {
+        font-size: $font-size * 2;
+    }
+
+    [data-dpr="3"] & {
+        font-size: $font-size * 3;
+    }
+}
